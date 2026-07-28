@@ -401,7 +401,7 @@ section{ padding:120px var(--edge); position:relative; }
 .video-thumb:hover img{ transform:scale(1.05); }
 .play-btn{
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:60px; height:60px; border-radius:50%; background:var(--accent-coral); color:#fff;
+  width:40px; height:40px; border-radius:50%; background:var(--accent-coral); color:#fff;
   display:flex; align-items:center; justify-content:center; font-size:1rem;
   box-shadow:0 8px 24px var(--shadow);
 }
