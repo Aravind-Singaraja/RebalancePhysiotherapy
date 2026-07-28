@@ -283,103 +283,149 @@ videoModal.addEventListener("click", (e) => {
   backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
   /* ---------- Contact form validation ---------- */
-  const contactForm = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  contactForm.addEventListener('submit', (e) => {
+const contactForm = document.getElementById("contactForm");
+const formSuccess = document.getElementById("formSuccess");
+
+contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     let valid = true;
-    contactForm.querySelectorAll('.form-field').forEach(field => {
-      const input = field.querySelector('input, select, textarea');
-      if(!input || !input.hasAttribute('required')) return;
-      const ok = input.checkValidity();
-      field.classList.toggle('is-invalid', !ok);
-      if(!ok) valid = false;
+
+    contactForm.querySelectorAll(".form-field").forEach(field => {
+        const input = field.querySelector("input, select, textarea");
+
+        if (!input || !input.hasAttribute("required")) return;
+
+        const ok = input.checkValidity();
+
+        field.classList.toggle("is-invalid", !ok);
+
+        if (!ok) valid = false;
     });
-    if(valid){
-      formSuccess.classList.add('is-visible');
-      contactForm.reset();
-      setTimeout(() => formSuccess.classList.remove('is-visible'), 5000);
-    }
-  });
-  contactForm.querySelectorAll('input, select, textarea').forEach(el => {
-    el.addEventListener('input', () => {
-      const field = el.closest('.form-field');
-      if(field && el.checkValidity()) field.classList.remove('is-invalid');
+
+    if (!valid) return;
+
+    // Get form values
+    const name = document.getElementById("fName").value.trim();
+    const phone = document.getElementById("fPhone").value.trim();
+    const email = document.getElementById("fEmail").value.trim();
+    const condition = document.getElementById("fCondition").value;
+    const message = document.getElementById("fMsg").value.trim();
+
+    // Your WhatsApp Number (without +)
+    const whatsappNumber = "918148306070";
+
+    // WhatsApp Message
+    const whatsappMessage = `*New Callback Request*
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Condition: ${condition}
+
+ Message:
+${message || "N/A"}
+`;
+
+    // Show success message
+    formSuccess.classList.add("is-visible");
+
+    // Reset form
+    contactForm.reset();
+
+    // Open WhatsApp
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+        "_blank"
+    );
+
+    setTimeout(() => {
+        formSuccess.classList.remove("is-visible");
+    }, 5000);
+});
+
+// Remove validation error while typing
+contactForm.querySelectorAll("input, select, textarea").forEach(el => {
+    el.addEventListener("input", () => {
+        const field = el.closest(".form-field");
+        if (field && el.checkValidity()) {
+            field.classList.remove("is-invalid");
+        }
     });
-  });
+});
 
   /* ---------- Newsletter form ---------- */
-  const newsletterForm = document.getElementById('newsletterForm');
-  const newsletterSuccess = document.getElementById('newsletterSuccess');
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    newsletterSuccess.classList.add('is-visible');
-    newsletterForm.reset();
-    setTimeout(() => newsletterSuccess.classList.remove('is-visible'), 5000);
-  });
+  // const newsletterForm = document.getElementById('newsletterForm');
+  // const newsletterSuccess = document.getElementById('newsletterSuccess');
+  // newsletterForm.addEventListener('submit', (e) => {
+  //   e.preventDefault();
+  //   newsletterSuccess.classList.add('is-visible');
+  //   newsletterForm.reset();
+  //   setTimeout(() => newsletterSuccess.classList.remove('is-visible'), 5000);
+  // });
 
   /* ---------- Chatbot ---------- */
-  const chatbotToggle = document.getElementById('chatbotToggle');
-  const chatbotWindow = document.getElementById('chatbotWindow');
-  const chatbotClose = document.getElementById('chatbotClose');
-  const chatbotBody = document.getElementById('chatbotBody');
-  const chatbotForm = document.getElementById('chatbotForm');
-  const chatbotInput = document.getElementById('chatbotInput');
-  const chatbotQuick = document.getElementById('chatbotQuick');
+//   const chatbotToggle = document.getElementById('chatbotToggle');
+//   const chatbotWindow = document.getElementById('chatbotWindow');
+//   const chatbotClose = document.getElementById('chatbotClose');
+//   const chatbotBody = document.getElementById('chatbotBody');
+//   const chatbotForm = document.getElementById('chatbotForm');
+//   const chatbotInput = document.getElementById('chatbotInput');
+//   const chatbotQuick = document.getElementById('chatbotQuick');
 
-  function openChat(){
-    chatbotWindow.classList.add('is-open');
-    chatbotWindow.setAttribute('aria-hidden','false');
-  }
-  chatbotToggle.addEventListener('click', () => {
-    chatbotWindow.classList.contains('is-open') ? closeChat() : openChat();
-  });
-  function closeChat(){
-    chatbotWindow.classList.remove('is-open');
-    chatbotWindow.setAttribute('aria-hidden','true');
-  }
-  chatbotClose.addEventListener('click', closeChat);
+//   function openChat(){
+//     chatbotWindow.classList.add('is-open');
+//     chatbotWindow.setAttribute('aria-hidden','false');
+//   }
+//   chatbotToggle.addEventListener('click', () => {
+//     chatbotWindow.classList.contains('is-open') ? closeChat() : openChat();
+//   });
+//   function closeChat(){
+//     chatbotWindow.classList.remove('is-open');
+//     chatbotWindow.setAttribute('aria-hidden','true');
+//   }
+//   chatbotClose.addEventListener('click', closeChat);
 
-  const botReplies = {
-    hours: "We're open Monday to Saturday, 8:00 AM – 8:00 PM, and Sundays by appointment.",
-    book: "You can book by filling in the contact form below, calling +91 98765 43210, or messaging us on WhatsApp.",
-    location: "We're located at 12 Kasturi Estate, 2nd Avenue, Chennai 600028 — see the map in our Contact section.",
-    treatments: "We treat stroke, Parkinson's, vertigo, balance disorders, musculoskeletal pain, and offer home physiotherapy and healthy ageing programmes."
-  };
+//   const botReplies = {
+//     hours: "We're open Monday to Saturday, 8:00 AM – 8:00 PM, and Sundays by appointment.",
+//     book: "You can book by filling in the contact form below, calling +91 98765 43210, or messaging us on WhatsApp.",
+//     location: "We're located at 12 Kasturi Estate, 2nd Avenue, Chennai 600028 — see the map in our Contact section.",
+//     treatments: "We treat stroke, Parkinson's, vertigo, balance disorders, musculoskeletal pain, and offer home physiotherapy and healthy ageing programmes."
+//   };
 
-  function addMessage(text, who){
-    const div = document.createElement('div');
-    div.className = 'chat-msg chat-msg--' + who;
-    div.textContent = text;
-    chatbotBody.appendChild(div);
-    chatbotBody.scrollTop = chatbotBody.scrollHeight;
-  }
+//   function addMessage(text, who){
+//     const div = document.createElement('div');
+//     div.className = 'chat-msg chat-msg--' + who;
+//     div.textContent = text;
+//     chatbotBody.appendChild(div);
+//     chatbotBody.scrollTop = chatbotBody.scrollHeight;
+//   }
 
-  function botRespond(userText){
-    const t = userText.toLowerCase();
-    let reply = "Thanks for your message — for anything specific, please call +91 98765 43210 or use the contact form below and our team will get back to you shortly.";
-    if(t.includes('hour') || t.includes('time') || t.includes('open')) reply = botReplies.hours;
-    else if(t.includes('book') || t.includes('appointment')) reply = botReplies.book;
-    else if(t.includes('locat') || t.includes('address') || t.includes('where')) reply = botReplies.location;
-    else if(t.includes('treat') || t.includes('condition') || t.includes('stroke') || t.includes('parkinson') || t.includes('vertigo')) reply = botReplies.treatments;
-    setTimeout(() => addMessage(reply, 'bot'), 500);
-  }
+//   function botRespond(userText){
+//     const t = userText.toLowerCase();
+//     let reply = "Thanks for your message — for anything specific, please call +91 98765 43210 or use the contact form below and our team will get back to you shortly.";
+//     if(t.includes('hour') || t.includes('time') || t.includes('open')) reply = botReplies.hours;
+//     else if(t.includes('book') || t.includes('appointment')) reply = botReplies.book;
+//     else if(t.includes('locat') || t.includes('address') || t.includes('where')) reply = botReplies.location;
+//     else if(t.includes('treat') || t.includes('condition') || t.includes('stroke') || t.includes('parkinson') || t.includes('vertigo')) reply = botReplies.treatments;
+//     setTimeout(() => addMessage(reply, 'bot'), 500);
+//   }
 
-  chatbotQuick.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-q]');
-    if(!btn) return;
-    addMessage(btn.textContent, 'user');
-    const reply = botReplies[btn.dataset.q];
-    setTimeout(() => addMessage(reply, 'bot'), 500);
-  });
+//   chatbotQuick.addEventListener('click', (e) => {
+//     const btn = e.target.closest('button[data-q]');
+//     if(!btn) return;
+//     addMessage(btn.textContent, 'user');
+//     const reply = botReplies[btn.dataset.q];
+//     setTimeout(() => addMessage(reply, 'bot'), 500);
+//   });
 
-  chatbotForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = chatbotInput.value.trim();
-    if(!val) return;
-    addMessage(val, 'user');
-    botRespond(val);
-    chatbotInput.value = '';
-  });
+//   chatbotForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const val = chatbotInput.value.trim();
+//     if(!val) return;
+//     addMessage(val, 'user');
+//     botRespond(val);
+//     chatbotInput.value = '';
+//   });
 
 });
