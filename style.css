@@ -114,17 +114,37 @@ section{ padding:120px var(--edge); position:relative; }
   max-width:var(--container); margin:0 auto; padding:0 var(--edge);
   display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
-.logo{ display:flex; align-items:center; gap:12px; }
-.logo-mark svg{ width:34px; height:34px; }
-.site-header.is-scrolled .logo-mark svg rect{ fill:var(--navy); }
-.logo-text{
-  font-family:var(--font-display); font-weight:700; font-size:1.05rem; letter-spacing:.02em;
-  color:var(--navy); display:flex; flex-direction:column; line-height:1.1;
+/* Header layout */
+.header-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;   /* Optional */
+    margin: 0 auto;
+    padding: 0 24px;
 }
-.hero .logo-text, .site-header:not(.is-scrolled) .logo-text{ color:#fff; }
-.site-header.is-scrolled .logo-text{ color:var(--navy); }
-.logo-sub{ font-family:var(--font-mono); font-size:.6rem; font-weight:500; letter-spacing:.06em; color:var(--slate); text-transform:uppercase; }
 
+/* Logo */
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: auto;   /* Pushes the rest of the navbar to the right */
+    flex-shrink: 0;
+}
+
+/* Logo image */
+.logo-mark img{
+    width: 180px;         /* Increase as needed */
+    height: auto;
+    display: block;
+}
+
+/* Hide old SVG sizing */
+.logo-mark svg{
+    display: none;
+}
 .main-nav ul{ display:flex; gap:30px; }
 .main-nav a{
   font-size:.86rem; font-weight:500; color:#fff; position:relative; padding:6px 0;
