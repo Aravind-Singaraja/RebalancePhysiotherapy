@@ -786,3 +786,36 @@ section{ padding:120px var(--edge); position:relative; }
     border:0;
     display:block;
 }
+.footer-social .social-links {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-social .social-links a {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #fff !important;
+    text-decoration: none;
+
+    transition: all .3s ease;
+}
+
+.footer-social .social-links a i {
+    color: #fff !important;
+    font-size: 20px;
+    display: block;
+    line-height: 1;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
