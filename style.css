@@ -212,7 +212,7 @@ section{ padding:80px var(--edge); position:relative; }
   display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center;
   position:relative; z-index:2;
 }
-.hero-copy{ padding-right:20px; }
+.hero-copy{ order:1; padding-right:20px; }
 .hero-title{
   font-size:clamp(2.6rem, 5.4vw, 4.4rem); line-height:1.04; color:var(--navy); margin:22px 0 26px;
   font-weight:700;
@@ -236,7 +236,7 @@ section{ padding:80px var(--edge); position:relative; }
 .counter-block p{ font-size:.78rem; color:var(--text-muted); margin-top:4px; max-width:140px; }
 
 /* ---------- Visual side: decorative glass card, no image ---------- */
-.hero-visual{ position:relative; min-height:480px; display:flex; align-items:center; }
+.hero-visual{ order:2; position:relative; min-height:480px; display:flex; align-items:center; }
 .hero-shape{ position:absolute; z-index:1; }
 .hero-shape.sq{ width:150px; height:150px; background:var(--accent-coral); top:-30px; right:40px; transform:rotate(8deg); opacity:.9; }
 .hero-shape.circ{ width:220px; height:220px; border-radius:50%; border:3px solid var(--border); bottom:-40px; left:-30px; }
@@ -274,6 +274,17 @@ section{ padding:80px var(--edge); position:relative; }
 
 .scroll-cue span{ background:var(--border); }
 .scroll-cue span::after{ background:var(--accent-coral); }
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-copy{ order:1; padding-right:0; }
+  .hero-visual{ order:2; min-height:auto; margin-top:40px; }
+}
+
+@media (max-width:560px){
+  .hero-glass-card{ display:block; padding:32px 26px; }
+}
 /* =========================================================
    ABOUT
    ========================================================= */
@@ -816,7 +827,7 @@ section{ padding:80px var(--edge); position:relative; }
    ========================================================= */
 @media (max-width: 1080px){
   .hero-grid{ grid-template-columns:1fr; }
-  .hero-visual{ height:440px; order:-1; }
+  /* .hero-visual{ height:440px; order:-1; } */
   .about-grid{ grid-template-columns:1fr; }
   .about-media{ position:static; }
   .why-grid{ grid-template-columns:repeat(2,1fr); }
