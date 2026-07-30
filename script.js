@@ -19,17 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('scroll', updateHeader, { passive:true });
   updateHeader();
 
-  /* ---------- Mobile nav toggle ---------- */
+/* ---------- Mobile nav toggle ---------- */
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', open);
-  });
-  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  const mainNavClose = document.getElementById('mainNavClose');
+
+  function openNav(){
+    mainNav.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav(){
     mainNav.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
-  }));
+    document.body.style.overflow = '';
+  }
+
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.contains('is-open') ? closeNav() : openNav();
+  });
+  mainNavClose.addEventListener('click', closeNav);
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
   /* ---------- Scroll spy ---------- */
   const navLinks = document.querySelectorAll('[data-nav]');
@@ -46,47 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
   sections.forEach(s => spyObserver.observe(s));
-  (function(){
-  const slideshow = document.getElementById('heroSlideshow');
-  if (!slideshow) return;
+  
 
-  const slides = Array.from(slideshow.querySelectorAll('.hero-slide'));
-  if (slides.length <= 1) return; // nothing to do with a single image
-
-  const dotsWrap = document.getElementById('heroSlideDots');
-  let current = 0;
-  let timer;
-
-  // build dots dynamically based on how many images exist
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', `Show slide ${i + 1}`);
-    if (i === 0) dot.classList.add('is-active');
-    dot.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(dot);
-  });
-  const dots = Array.from(dotsWrap.querySelectorAll('button'));
-
-  function goTo(index){
-    slides[current].classList.remove('is-active');
-    dots[current].classList.remove('is-active');
-    current = index;
-    slides[current].classList.add('is-active');
-    dots[current].classList.add('is-active');
-    restart();
-  }
-
-  function next(){
-    goTo((current + 1) % slides.length);
-  }
-
-  function restart(){
-    clearInterval(timer);
-    timer = setInterval(next, 4500);
-  }
-
-  restart();
-})();
 
   /* ---------- Reveal on scroll ---------- */
   const revealTargets = document.querySelectorAll(
@@ -226,15 +197,62 @@ document.querySelectorAll('[data-accordion]').forEach(accordion => {
     });
   });
 });
-  /* ---------- Process step auto/hover activation ---------- */
-  const steps = document.querySelectorAll('.process-step');
-  steps.forEach(step => {
-    step.addEventListener('mouseenter', () => {
-      steps.forEach(s => s.classList.remove('is-active'));
-      step.classList.add('is-active');
+/* ---------- Doctor profile slide-out / accordion ---------- */
+  document.querySelectorAll('.doctor-card--expandable').forEach(card => {
+    const openBtn = card.querySelector('[data-profile-open]');
+    const closeBtn = card.querySelector('[data-profile-close]');
+    const panel = card.querySelector('.doctor-bio-panel');
+    if(!openBtn || !closeBtn || !panel) return;
+
+    function open(){
+      card.classList.add('is-open');
+      openBtn.setAttribute('aria-expanded', 'true');
+      openBtn.textContent = 'Hide Profile';
+      panel.setAttribute('aria-hidden', 'false');
+    }
+    function close(){
+      card.classList.remove('is-open');
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.textContent = 'View Full Profile';
+      panel.setAttribute('aria-hidden', 'true');
+    }
+
+    openBtn.addEventListener('click', () => {
+      card.classList.contains('is-open') ? close() : open();
+    });
+    closeBtn.addEventListener('click', close);
+  });
+  /* ---------- Achievements slider + lightbox ---------- */
+  const achvTrack = document.getElementById('achvTrack');
+  const achvPrev = document.getElementById('achvPrev');
+  const achvNext = document.getElementById('achvNext');
+  if(achvTrack){
+    const achvScrollAmount = () => achvTrack.querySelector('.achv-card').offsetWidth + 26;
+    achvNext.addEventListener('click', () => achvTrack.scrollBy({ left: achvScrollAmount(), behavior:'smooth' }));
+    achvPrev.addEventListener('click', () => achvTrack.scrollBy({ left: -achvScrollAmount(), behavior:'smooth' }));
+  }
+
+  const achvModal = document.getElementById('achvModal');
+  const achvModalImg = document.getElementById('achvModalImg');
+  const achvModalClose = document.getElementById('achvModalClose');
+
+  document.querySelectorAll('[data-achv-open]').forEach(card => {
+    card.addEventListener('click', () => {
+      achvModalImg.src = card.dataset.img;
+      achvModal.classList.add('is-open');
+      achvModal.setAttribute('aria-hidden', 'false');
     });
   });
 
+  function closeAchvModal(){
+    achvModal.classList.remove('is-open');
+    achvModal.setAttribute('aria-hidden', 'true');
+    achvModalImg.src = '';
+  }
+  achvModalClose.addEventListener('click', closeAchvModal);
+  achvModal.addEventListener('click', (e) => {
+    if(e.target === achvModal) closeAchvModal();
+  });
   /* ---------- Video slider ---------- */
   const videoTrack = document.getElementById('videoTrack');
   const videoPrev = document.getElementById('videoPrev');

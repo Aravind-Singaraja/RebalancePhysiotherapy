@@ -215,6 +215,7 @@
       </a>
 
       <nav class="main-nav" id="mainNav" aria-label="Primary">
+        <button class="main-nav-close" id="mainNavClose" aria-label="Close menu">&times;</button>
         <ul>
           <li><a href="#contact" data-nav>Contact</a></li>
           <li><a href="#reviews" data-nav>Reviews</a></li>
@@ -225,7 +226,7 @@
           <!-- <li><a href="#process" data-nav>Process</a></li> -->
           <li><a href="#doctors" data-nav>Doctors</a></li>
           <!-- <li><a href="#blog" data-nav>Journal</a></li> -->
-          <li><a href="#faq" data-nav>FAQ</a></li>
+          <!-- <li><a href="#faq" data-nav>FAQ</a></li> -->
           <!-- <li><a href="#location" data-nav>Location</a></li> -->
         </ul>
       </nav>
@@ -240,67 +241,62 @@
     </div>
   </header>
 
-  <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dash"></span>ADYAR, CHENNAI · NEURO REHABILITATION CENTRE</p>
-        <h1 class="hero-title">
-          Regain <em>Movement.</em><br>
-          Restore <span class="hl-coral">Independence.</span>
-        </h1>
-        <p class="hero-sub">Expert Neuro Physiotherapy & Rehabilitation in Chennai, Helping Stroke, Parkinson's,
-          Vestibular Disorders, Spinal Cord Injury, and Neurological Conditions regain independence through
-          evidence-based rehabilitation.</p>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-dash"></span>ADYAR, CHENNAI · NEURO REHABILITATION CENTRE</p>
+      <h1 class="hero-title">
+        Regain <em>Movement.</em><br>
+        Restore <span class="hl-coral">Independence.</span>
+      </h1>
+      <p class="hero-sub">Expert Neuro Physiotherapy & Rehabilitation in Chennai, Helping Stroke, Parkinson's,
+        Vestibular Disorders, Spinal Cord Injury, and Neurological Conditions regain independence through
+        evidence-based rehabilitation.</p>
 
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-coral btn-lg magnetic ripple">Book Appointment</a>
-          <a href="tel:+918148306070" class="btn btn-outline btn-lg magnetic ripple">Call Now</a>
-          <button class="btn btn-text btn-lg magnetic" id="watchStoriesBtn">
-            <span class="play-dot" aria-hidden="true"></span> <a href="#reviews">Watch Success Stories</a>
-          </button>
-        </div>
-
-        <div class="hero-counters" id="heroCounters">
-          <div class="counter-block">
-            <span class="counter" data-target="94.5">0</span><span class="counter-suffix">%</span>
-            <p>Success Rate</p>
-          </div>
-          <div class="counter-block">
-            <span class="counter" data-target="560">0</span><span class="counter-suffix">+</span>
-            <p>Happy Clients</p>
-          </div>
-          <div class="counter-block">
-            <span class="counter" data-target="365">0</span><span class="counter-suffix"></span>
-            <p>Days</p>
-          </div>
-        </div>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-coral btn-lg magnetic ripple">Book Appointment</a>
+        <a href="tel:+918148306070" class="btn btn-outline btn-lg magnetic ripple">Call Now</a>
+        <button class="btn btn-text btn-lg magnetic" id="watchStoriesBtn">
+          <span class="play-dot" aria-hidden="true"></span> <a href="#reviews">Watch Success Stories</a>
+        </button>
       </div>
 
-      <div class="hero-visual" id="heroVisual">
-        <div class="hero-shape sq" aria-hidden="true"></div>
-        <div class="hero-shape circ" aria-hidden="true"></div>
-        <div class="hero-image-frame" data-parallax>
-          <div class="hero-slideshow" id="heroSlideshow">
-            <img src="assets/images/DrChristinaNissi'sAwardOfExcellence.webp"
-              alt="Dr. Christina Nissi at Rebalance Physiotherapy and Rehabilitation center" loading="eager" width="900"
-              height="1100" class="hero-slide is-active">
-            <img src="assets/images/DrChristinaNissi'sAwardOfExcellence2.webp"
-              alt="Physiotherapy session at Rebalance Physiotherapy and Rehabilitation center" loading="lazy"
-              width="900" height="1100" class="hero-slide">
-            <img src="assets/images/IconOfIndiaAwardForDrChristinaNissi.webp"
-              alt="Rehabilitation care at Rebalance Physiotherapy and Rehabilitation center" loading="lazy" width="900"
-              height="1100" class="hero-slide">
-          </div>
-          <div class="hero-slide-dots" id="heroSlideDots"></div>
-          <div class="frame-bar"></div>
+      <div class="hero-counters" id="heroCounters">
+        <div class="counter-block">
+          <span class="counter" data-target="94.5">0</span><span class="counter-suffix">%</span>
+          <p>Success Rate</p>
+        </div>
+        <div class="counter-block">
+          <span class="counter" data-target="560">0</span><span class="counter-suffix">+</span>
+          <p>Happy Clients</p>
+        </div>
+        <div class="counter-block">
+          <span class="counter" data-target="365">0</span><span class="counter-suffix"></span>
+          <p>Days</p>
         </div>
       </div>
     </div>
-    </div>
-    <a href="#about" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
-  </section>
 
+    <div class="hero-visual" id="heroVisual">
+      <div class="hero-shape sq" aria-hidden="true"></div>
+      <div class="hero-shape circ" aria-hidden="true"></div>
+
+      <div class="hero-glass-card">
+        <p class="hgc-eyebrow">Why Rebalance</p>
+        <ul class="hgc-list">
+          <li><span class="hgc-num">01</span><span>One-to-one, evidence-based neuro physiotherapy</span></li>
+          <li><span class="hgc-num">02</span><span>Personalised recovery plans that adapt over time</span></li>
+          <li><span class="hgc-num">03</span><span>Trusted by 560+ patients across Chennai</span></li>
+          <li><span class="hgc-num">04</span><span>Award-recognised clinical expertise</span></li>
+        </ul>
+        <div class="hgc-footer">
+          <span class="hgc-footer-dot"></span> Rated 94.5% patient success rate
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-cue" aria-label="Scroll to content"><span></span></a>
+</section>
   <!-- ============ CONTACT (TOP) ============ -->
   <section class="contact contact--top" id="contact">
     <div class="section-head">
@@ -362,6 +358,60 @@
         </div>
       </form>
   </section>
+  <!-- ============ ACHIEVEMENTS ============ -->
+<section class="achievements" id="achievements">
+  <div class="section-head section-head--split">
+    <div>
+      <p class="eyebrow"><span class="eyebrow-dash"></span>RECOGNITION</p>
+      <h2>Awards &amp; Achievements.</h2>
+    </div>
+    <p class="section-note">Ms. Christina Nissi's clinical excellence has been recognised with several national honours in physiotherapy.</p>
+  </div>
+
+  <div class="achv-slider">
+    <div class="achv-track" id="achvTrack">
+
+      <button class="achv-card" data-achv-open data-img="assets/images/achievement1.jpg">
+        <img src="assets/images/achievement1.jpg" alt="Bharat Gaurav Puraskar award presented to Ms. W. Christina Nissi" loading="lazy">
+        <span class="achv-cap">Global Achiever's Award <em>2023</em></span>
+      </button>
+
+      <button class="achv-card" data-achv-open data-img="assets/images/achievement2.jpg">
+        <img src="assets/images/achievement2.jpg" alt="Legendary Icon of India Award 2025 certificate presented to Ms. W. Christina Nissi" loading="lazy">
+        <span class="achv-cap">Best Physiotherapist Award <em>2023</em></span>
+      </button>
+
+      <button class="achv-card" data-achv-open data-img="assets/images/achievement3.jpg">
+        <img src="assets/images/achievement3.jpg" alt="Legendary Icon of India Award 2025 medal presented to Ms. W. Christina Nissi" loading="lazy">
+        <span class="achv-cap">Legendary Icon of India Award <em>Medal</em></span>
+      </button>
+
+      <button class="achv-card" data-achv-open data-img="assets/images/achievement4.jpg">
+        <img src="assets/images/achievement4.jpg" alt="Best Physiotherapist Award presented to Ms. W. Christina Nissi" loading="lazy">
+        <span class="achv-cap">Legendary Icon Of India Award <em>2025</em></span>
+      </button>
+
+      <button class="achv-card" data-achv-open data-img="assets/images/achievement5.jpg">
+        <img src="assets/images/achievement5.jpg" alt="Global Achievers Award presented to Ms. W. Christina Nissi" loading="lazy">
+        <span class="achv-cap">Bharat Gaurav Puraskar Award <em>2023</em></span>
+      </button>
+
+    </div>
+
+    <div class="achv-controls">
+      <button id="achvPrev" aria-label="Previous award">&larr;</button>
+      <button id="achvNext" aria-label="Next award">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox modal -->
+<div class="achv-modal" id="achvModal" aria-hidden="true">
+  <button class="achv-modal-close" id="achvModalClose" aria-label="Close">&times;</button>
+  <div class="achv-modal-inner">
+    <img id="achvModalImg" src="" alt="Award certificate enlarged view">
+  </div>
+</div>
   <!-- ============ ABOUT ============ -->
   <section class="about" id="about">
     <div class="section-head">
@@ -615,7 +665,7 @@
 
     <div class="treat-panels">
       <div class="treat-panel is-active" data-panel="neuro">
-        <div class="treat-panel-media" id="neurorehabilitation"><img src="assets/images/neuroRehabilitation.webp"
+        <div class="treat-panel-media" id="neurorehabilitation"><img src="assets/images/neuroRehabilitation1.jpg"
             alt="Neuro rehabilitation therapy session at Rebalance physiotherapy and rehabilitation center Adayar"
             loading="lazy" width="700" height="560"></div>
 
@@ -1030,7 +1080,7 @@
       </div>
 
       <div class="treat-panel" data-panel="ageing">
-        <div class="treat-panel-media" id="ageing"><img src="assets/images/healthAgeing.webp"
+        <div class="treat-panel-media" id="ageing"><img src="assets/images/healthyageing.webp"
             alt="Healthy ageing and senior fitness therapy at Rebalance physiotherapy and rehabilitation center Adayar"
             loading="lazy" width="700" height="560"></div>
 
@@ -1176,66 +1226,49 @@
   </section>
 
   <!-- ============ DOCTORS ============ -->
-  <section class="doctors" id="doctors">
-    <div class="section-head">
-      <p class="eyebrow"><span class="eyebrow-dash"></span>OUR CLINICIANS</p>
-      <h2>Therapists trained in<br>neuro rehabilitation science.</h2>
+ <section class="doctors" id="doctors">
+  <div class="section-head">
+    <p class="eyebrow"><span class="eyebrow-dash"></span>OUR CLINICIANS</p>
+    <h2>Therapists trained in<br>neuro rehabilitation science.</h2>
+  </div>
+  <div class="doctors-grid">
+<article class="doctor-card doctor-card--expandable">
+  <div class="doctor-photo-wrap">
+    <div class="doctor-photo">
+      <img src="assets/images/Dr_ChristinaNissiAtRebalance.webp"
+           alt="Portrait of Dr. Christina Nissi Arun, MPT Neurology" loading="lazy" width="500" height="600">
     </div>
+    <button class="doctor-profile-trigger" data-profile-open aria-expanded="false">
+      View Full Profile
+    </button>
+  </div>
 
-    <div class="doctors-grid">
-      <article class="doctor-card">
-        <div class="doctor-photo"><img src="assets/images/Dr_ChristinaNissiAtRebalance.webp"
-            alt="Portrait of Dr. Dr. Christina Nissi Arun, MPT Neurology," loading="lazy" width="500" height="600">
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Christina Nissi Arun</h3>
-          <p class="doctor-role">MASTER OF PHYSIOTHERAPY (Neurology)</p>
-          <!-- <p class="doctor-spec">Stroke &amp; Neuro Rehabilitation</p> -->
-          <div class="doctor-actions">
-            <a href="#contact" class="btn btn-coral btn-sm magnetic">Book</a>
-            <!-- <div class="doctor-social">
-            <a href="#" aria-label="LinkedIn profile">in</a>
-            <a href="#" aria-label="Twitter profile">tw</a>
-          </div> -->
-          </div>
-        </div>
-      </article>
-
-      <article class="doctor-card doctor-card--offset">
-        <div class="doctor-photo"><img src="assets/images/Dr_Arun.webp" alt="Portrait of Dr. Arun" loading="lazy"
-            width="500" height="600"></div>
-        <div class="doctor-info">
-          <h3>Dr. Arun</h3>
-          <p class="doctor-role">MASTER OF PHYSIOTHERAPY (Cardiopulmonary)</p>
-          <!-- <p class="doctor-spec">Musculoskeletal &amp; Pain Management</p> -->
-          <div class="doctor-actions">
-            <a href="#contact" class="btn btn-coral btn-sm magnetic">Book</a>
-            <!-- <div class="doctor-social">
-            <a href="#" aria-label="LinkedIn profile">in</a>
-            <a href="#" aria-label="Twitter profile">tw</a>
-          </div> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- <article class="doctor-card">
-      <div class="doctor-photo"><img src="https://picsum.photos/seed/doc-3/500/600" alt="Portrait of Dr. Meera Iyer" loading="lazy" width="500" height="600"></div>
-      <div class="doctor-info">
-        <h3>Dr. Meera Iyer</h3>
-        <p class="doctor-role">MPT (Geriatrics) · 9 yrs experience</p>
-        <p class="doctor-spec">Healthy Ageing &amp; Balance Training</p>
-        <div class="doctor-actions">
-          <a href="#contact" class="btn btn-coral btn-sm magnetic">Book</a>
-          <div class="doctor-social">
-            <a href="#" aria-label="LinkedIn profile">in</a>
-            <a href="#" aria-label="Twitter profile">tw</a>
-          </div>
-        </div>
-      </div>
-    </article> -->
+  <div class="doctor-bio-panel" aria-hidden="true">
+    <button class="doctor-bio-close" data-profile-close aria-label="Close profile">&times;</button>
+    <div class="doctor-bio-scroll">
+      <h4>Dr. Christina Nissi Arun</h4>
+      <p class="doctor-bio-role">MPT Neurology</p>
+      <p>Ms. Christina Nissi is a highly skilled and experienced Neuro Physiotherapist in Chennai. With over 10+ years of expertise in the field, she is dedicated to improving the lives of her patients through specialised rehabilitation.</p>
+      <p>Ms. Christina applies her knowledge and experience to help individuals recover from neurological conditions. She completed her Master's in Physiotherapy (MPTh/MPT) with a specialisation in Neurological Physiotherapy from Government KG Hospital in 2014.</p>
+      <p>Over the years, Ms. Christina has gained recognition for her exceptional work, earning prestigious accolades such as the "Bharat Gaurav Puraskar", "Global Achievers Award", and the "Best Physiotherapist Award" from the KTK Educational Foundation in New Delhi.</p>
+      <p>Ms. Nissi has successfully rehabilitated hundreds of patients, guiding them back to healthier and more independent lives. Her compassionate approach and expertise have made her a trusted professional in her field.</p>
     </div>
-  </section>
+  </div>
 
+  <div class="doctor-info">
+    <h3>Dr. Christina Nissi Arun</h3>
+    <p class="doctor-role">MASTER OF PHYSIOTHERAPY (Neurology)</p>
+    <p class="doctor-expertise">
+      <span class="de-label">Areas of Expertise:</span>
+      Stroke Rehabilitation • Parkinson's Rehabilitation • Vestibular Rehabilitation • Balance &amp; Gait Training • Geriatric Rehabilitation
+    </p>
+    <div class="doctor-actions">
+      <a href="#contact" class="btn btn-coral btn-sm magnetic">Book</a>
+    </div>
+  </div>
+</article>
+  </div>
+</section>
   <!-- ============ TESTIMONIALS ============ -->
   <section class="testimonials" id="testimonials">
     <div class="testimonials-inner">
