@@ -381,7 +381,7 @@ section{ padding:80px var(--edge); position:relative; }
   font-family:var(--font-mono); font-size:.7rem; font-weight:600; letter-spacing:.08em;
   text-transform:uppercase; color:var(--accent-coral); margin-bottom:6px;
 }
-.proc-block p:not(.proc-label){ color:var(--text-secondary); font-size:.9rem; line-height:1.6; max-width:480px; }
+.proc-block p:not(.proc-label){ color:var(--text-secondary); font-family: var(--font-mono); font-size:.9rem; line-height:1.6; max-width:480px; }
 
 .treat-panels{ max-width:var(--container); margin:0 auto; }
 .treat-panel{ display:none; grid-template-columns:.9fr 1.1fr; gap:60px; padding-top:56px; align-items:start; }
