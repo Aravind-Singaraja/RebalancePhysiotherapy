@@ -197,31 +197,52 @@ document.querySelectorAll('[data-accordion]').forEach(accordion => {
     });
   });
 });
-/* ---------- Doctor profile slide-out / accordion ---------- */
-  document.querySelectorAll('.doctor-card--expandable').forEach(card => {
-    const openBtn = card.querySelector('[data-profile-open]');
-    const closeBtn = card.querySelector('[data-profile-close]');
-    const panel = card.querySelector('.doctor-bio-panel');
-    if(!openBtn || !closeBtn || !panel) return;
+/* ---------- Doctor profile modal ---------- */
+document.querySelectorAll('.doctor-card--expandable').forEach(card => {
+  const openBtn = card.querySelector('[data-profile-open]');
+  const closeBtn = card.querySelector('[data-profile-close]');
+  const overlay = card.querySelector('[data-profile-overlay]');
+  if (!openBtn || !closeBtn || !overlay) return;
 
-    function open(){
-      card.classList.add('is-open');
-      openBtn.setAttribute('aria-expanded', 'true');
-      openBtn.textContent = 'Hide Profile';
-      panel.setAttribute('aria-hidden', 'false');
-    }
-    function close(){
-      card.classList.remove('is-open');
-      openBtn.setAttribute('aria-expanded', 'false');
-      openBtn.textContent = 'View Full Profile';
-      panel.setAttribute('aria-hidden', 'true');
-    }
-
-    openBtn.addEventListener('click', () => {
-      card.classList.contains('is-open') ? close() : open();
+  function closeAllOthers() {
+    document.querySelectorAll('.doctor-bio-overlay.is-open').forEach(o => {
+      if (o !== overlay) o.dispatchEvent(new Event('force-close'));
     });
-    closeBtn.addEventListener('click', close);
+  }
+
+  function open() {
+    closeAllOthers();
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    openBtn.setAttribute('aria-expanded', 'true');
+    openBtn.textContent = 'Hide Profile';
+    document.body.classList.add('doctor-modal-open');
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    openBtn.setAttribute('aria-expanded', 'false');
+    openBtn.textContent = 'View Full Profile';
+    document.body.classList.remove('doctor-modal-open');
+  }
+
+  openBtn.addEventListener('click', () => {
+    overlay.classList.contains('is-open') ? close() : open();
   });
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('force-close', close);
+
+  // click backdrop (outside the panel) to close
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) close();
+  });
+
+  // Esc key closes
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+  });
+});
   /* ---------- Achievements slider + lightbox ---------- */
   const achvTrack = document.getElementById('achvTrack');
   const achvPrev = document.getElementById('achvPrev');
@@ -311,27 +332,26 @@ videoModal.addEventListener("click", (e) => {
     }
 
 });
-
-  /* ---------- Testimonial slider ---------- */
-  const testiTrack = document.getElementById('testiTrack');
-  const testiSlides = testiTrack.querySelectorAll('.testi-slide');
-  const testiDotsWrap = document.getElementById('testiDots');
-  let testiIndex = 0;
-  testiSlides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    if(i === 0) dot.classList.add('is-active');
-    dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
-    dot.addEventListener('click', () => showTesti(i));
-    testiDotsWrap.appendChild(dot);
-  });
-  function showTesti(i){
-    testiSlides.forEach(s => s.classList.remove('is-active'));
-    testiDotsWrap.querySelectorAll('button').forEach(d => d.classList.remove('is-active'));
-    testiSlides[i].classList.add('is-active');
-    testiDotsWrap.children[i].classList.add('is-active');
-    testiIndex = i;
-  }
-  setInterval(() => showTesti((testiIndex + 1) % testiSlides.length), 6000);
+/* ---------- Testimonial slider ---------- */
+const testiTrack = document.getElementById('testiTrack');
+const testiSlides = testiTrack.querySelectorAll('.testi-slide');
+const testiDotsWrap = document.getElementById('testiDots');
+let testiIndex = 0;
+testiSlides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  if(i === 0) dot.classList.add('is-active');
+  dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
+  dot.addEventListener('click', () => showTesti(i));
+  testiDotsWrap.appendChild(dot);
+});
+function showTesti(i){
+  testiSlides.forEach(s => s.classList.remove('is-active'));
+  testiDotsWrap.querySelectorAll('button').forEach(d => d.classList.remove('is-active'));
+  testiSlides[i].classList.add('is-active');
+  testiDotsWrap.children[i].classList.add('is-active');
+  testiIndex = i;
+}
+setInterval(() => showTesti((testiIndex + 1) % testiSlides.length), 6000);
 
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach(item => {
