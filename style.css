@@ -753,6 +753,22 @@ body.doctor-modal-open{ overflow:hidden; }
 @keyframes cpoFadeIn{
   to{ opacity:1; transform:translateY(0); }
 }
+.cpo-name{
+  color:#fff;
+  font-size:1.25rem;
+  font-weight:600;
+  margin-bottom:2px;
+  line-height:1.25;
+}
+
+.cpo-role{
+  font-family:var(--font-mono);
+  font-size:.76rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+  margin-bottom:16px;
+}
 
 .cpo-label{
   display:block;
