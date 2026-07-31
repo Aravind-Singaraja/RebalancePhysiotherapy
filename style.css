@@ -716,6 +716,7 @@ body.doctor-modal-open{ overflow:hidden; }
 }
 
 .contact-photo{
+  position:relative;              /* added — required so overlay can be absolutely positioned inside */
   overflow:hidden;
   border:1px solid var(--border);
 }
@@ -728,6 +729,76 @@ body.doctor-modal-open{ overflow:hidden; }
 }
 .contact-photo:hover img{
   transform:scale(1.04);
+}
+
+/* ---- expertise overlay ---- */
+.contact-photo-overlay{
+  position:absolute;
+  inset:auto 0 0 0;
+  padding:70px 26px 24px;
+  background:linear-gradient(
+    to top,
+    rgba(24,0,66,.92) 0%,
+    rgba(24,0,66,.75) 35%,
+    rgba(24,0,66,.25) 70%,
+    rgba(24,0,66,0) 100%
+  );
+  opacity:0;
+  transform:translateY(10px);
+  animation:cpoFadeIn .8s ease forwards;
+  animation-delay:.3s;
+  z-index:2;                      /* keeps overlay above the zoomed image on hover */
+}
+
+@keyframes cpoFadeIn{
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.cpo-label{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--accent-coral);
+  margin-bottom:12px;
+}
+
+.cpo-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.cpo-tag{
+  font-size:.78rem;
+  font-weight:500;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.35);
+  padding:6px 13px;
+  border-radius:30px;
+  backdrop-filter:blur(4px);
+  transition:background-color .25s, border-color .25s, transform .25s;
+}
+
+.contact-photo:hover .cpo-tag{
+  background:rgba(255,255,255,.18);
+}
+.cpo-tag:hover{
+  background:var(--accent-coral);
+  border-color:var(--accent-coral);
+  transform:translateY(-2px);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .contact-photo-overlay{ animation:none; opacity:1; transform:none; }
+}
+
+@media (max-width:600px){
+  .contact-photo-overlay{ padding:50px 18px 18px; }
+  .cpo-tag{ font-size:.72rem; padding:5px 11px; }
 }
 
 .contact-quickinfo{
