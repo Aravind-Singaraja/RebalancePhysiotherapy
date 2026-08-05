@@ -376,50 +376,119 @@ setInterval(() => showTesti((testiIndex + 1) % testiSlides.length), 6000);
   }, { passive:true });
   backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
-  /* ---------- Contact form validation ---------- */
+//   /* ---------- Contact form validation ---------- */
+// const contactForm = document.getElementById("contactForm");
+// const formSuccess = document.getElementById("formSuccess");
+
+// contactForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+
+//     let valid = true;
+
+//     contactForm.querySelectorAll(".form-field").forEach(field => {
+//         const input = field.querySelector("input, select, textarea");
+
+//         if (!input || !input.hasAttribute("required")) return;
+
+//         const ok = input.checkValidity();
+
+//         field.classList.toggle("is-invalid", !ok);
+
+//         if (!ok) valid = false;
+//     });
+
+//     if (!valid) return;
+
+//     // Get form values
+//     const name = document.getElementById("fName").value.trim();
+//     const phone = document.getElementById("fPhone").value.trim();
+//     const email = document.getElementById("fEmail").value.trim();
+//     const condition = document.getElementById("fCondition").value;
+//     const message = document.getElementById("fMsg").value.trim();
+
+//     // Your WhatsApp Number (without +)
+//     const whatsappNumber = "918148306070";
+
+//     // WhatsApp Message
+//     const whatsappMessage = `*New Callback Request*
+
+// Name: ${name}
+// Phone: ${phone}
+// Email: ${email}
+// Condition: ${condition}
+
+//  Message:
+// ${message || "N/A"}
+// `;
+
+//     // Show success message
+//     formSuccess.classList.add("is-visible");
+
+//     // Reset form
+//     contactForm.reset();
+
+//     // Open WhatsApp
+//     window.open(
+//         `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+//         "_blank"
+//     );
+
+//     setTimeout(() => {
+//         formSuccess.classList.remove("is-visible");
+//     }, 5000);
+// });
+
+// // Remove validation error while typing
+// contactForm.querySelectorAll("input, select, textarea").forEach(el => {
+//     el.addEventListener("input", () => {
+//         const field = el.closest(".form-field");
+//         if (field && el.checkValidity()) {
+//             field.classList.remove("is-invalid");
+//         }
+//     });
+// });
 const contactForm = document.getElementById("contactForm");
 const formSuccess = document.getElementById("formSuccess");
 
-contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+// From EmailJS dashboard
+const EMAILJS_SERVICE_ID = "service_h4dr4oe";   // Email Services tab
+const EMAILJS_TEMPLATE_ID = "template_0hypbwg"; // Email Templates tab
 
-    let valid = true;
+contactForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    contactForm.querySelectorAll(".form-field").forEach(field => {
-        const input = field.querySelector("input, select, textarea");
+  let valid = true;
+  contactForm.querySelectorAll(".form-field").forEach(field => {
+    const input = field.querySelector("input, select, textarea");
+    if (!input || !input.hasAttribute("required")) return;
+    const ok = input.checkValidity();
+    field.classList.toggle("is-invalid", !ok);
+    if (!ok) valid = false;
+  });
+  if (!valid) return;
 
-        if (!input || !input.hasAttribute("required")) return;
+  // Get form values
+  const name = document.getElementById("fName").value.trim();
+  const phone = document.getElementById("fPhone").value.trim();
+  const email = document.getElementById("fEmail").value.trim();
+  const condition = document.getElementById("fCondition").value;
+  const message = document.getElementById("fMsg").value.trim();
 
-        const ok = input.checkValidity();
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
 
-        field.classList.toggle("is-invalid", !ok);
-
-        if (!ok) valid = false;
+  try {
+    // These keys ({{name}}, {{phone}}, etc.) must match the variable
+    // names used in your EmailJS template (see README for the template).
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      name: name,
+      phone: phone,
+      email: email,
+      condition: condition,
+      message: message || "N/A",
     });
-
-    if (!valid) return;
-
-    // Get form values
-    const name = document.getElementById("fName").value.trim();
-    const phone = document.getElementById("fPhone").value.trim();
-    const email = document.getElementById("fEmail").value.trim();
-    const condition = document.getElementById("fCondition").value;
-    const message = document.getElementById("fMsg").value.trim();
-
-    // Your WhatsApp Number (without +)
-    const whatsappNumber = "918148306070";
-
-    // WhatsApp Message
-    const whatsappMessage = `*New Callback Request*
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Condition: ${condition}
-
- Message:
-${message || "N/A"}
-`;
 
     // Show success message
     formSuccess.classList.add("is-visible");
@@ -427,26 +496,28 @@ ${message || "N/A"}
     // Reset form
     contactForm.reset();
 
-    // Open WhatsApp
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
-        "_blank"
-    );
-
     setTimeout(() => {
-        formSuccess.classList.remove("is-visible");
+      formSuccess.classList.remove("is-visible");
     }, 5000);
+  } catch (err) {
+    console.error("EmailJS send error:", err);
+    alert("Something went wrong sending your request. Please call us directly at +91 8148306070.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  }
 });
 
 // Remove validation error while typing
 contactForm.querySelectorAll("input, select, textarea").forEach(el => {
-    el.addEventListener("input", () => {
-        const field = el.closest(".form-field");
-        if (field && el.checkValidity()) {
-            field.classList.remove("is-invalid");
-        }
-    });
+  el.addEventListener("input", () => {
+    const field = el.closest(".form-field");
+    if (field && el.checkValidity()) {
+      field.classList.remove("is-invalid");
+    }
+  });
 });
+
 
   /* ---------- Newsletter form ---------- */
   // const newsletterForm = document.getElementById('newsletterForm');
